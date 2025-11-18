@@ -6,20 +6,6 @@ plugins {
     alias(libs.plugins.kotlin.jpa)
 }
 
-group = "io.github.neronguyenvn"
-version = "0.0.1-SNAPSHOT"
-description = "NeroChat Backend"
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
-}
-
-repositories {
-	mavenCentral()
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
@@ -42,11 +28,9 @@ dependencies {
 }
 
 kotlin {
-	compilerOptions {
-		freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
-	}
+    jvmToolchain(21)
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+tasks.test {
+    useJUnitPlatform()
 }
